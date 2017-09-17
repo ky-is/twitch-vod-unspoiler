@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "Twitch VOD Unspoiler",
-  "description": "Unspoils Twitch VODs by concealing video durations, providing relative-time seek controls and speed-change hotkeys.",
+  "description": "Enhances your twitch.tv VOD viewing experience",
   "version": "1.0",
 
   "background": {
