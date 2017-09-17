@@ -1,0 +1,34 @@
+/* VODs page */
+
+body:not(._unspoil-off) .card__meta.card__meta--right {
+  display: none !important;
+}
+
+body:not(._unspoil-off) .player-slider__popup-container .popup-timestamp {
+  display: none !important;
+}
+
+/* Player controls */
+
+#_unspoil-seek button {
+  margin: 0 2px !important;
+  outline: none !important;
+}
+
+._unspoil-separator {
+  padding: 0 6px !important;
+}
+
+._unspoil-faint {
+  opacity: 0.8 !important;
+}
+
+/* Controls visibility */
+
+body:not(._unspoil-off) #js-player-seek > div:first-child {
+  visibility: hidden !important;
+}
+
+body._unspoil-off #js-player-seek > div:last-child {
+  display: none !important;
+}
