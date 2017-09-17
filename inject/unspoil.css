@@ -10,17 +10,24 @@ body:not(._unspoil-off) .player-slider__popup-container .popup-timestamp {
 
 /* Player controls */
 
+._unspoil-separator {
+  padding: 0 8px !important;
+}
+
+._unspoil-faint {
+  opacity: 0.9;
+  color: #eee;
+}
+
 #_unspoil-seek button {
   margin: 0 2px !important;
   outline: none !important;
 }
-
-._unspoil-separator {
-  padding: 0 6px !important;
+#_unspoil-seek button:hover, #_unspoil-seek button:hover ._unspoil-faint {
+  color: rgb(169, 145, 212) !important;
 }
-
-._unspoil-faint {
-  opacity: 0.8 !important;
+#_unspoil-seek button:hover:active {
+  opacity: 0.75;
 }
 
 /* Controls visibility */
