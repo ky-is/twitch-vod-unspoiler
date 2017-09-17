@@ -70,5 +70,6 @@ const pageObserver = new window.MutationObserver((mutations, observing) => {
   }
 })
 
-const pageElement = document.querySelector('#main_col')
-pageObserver.observe(pageElement, { childList: true, subtree: true })
+waitForSelector('#main_col', (nextElement) => {
+  pageObserver.observe(nextElement, { childList: true, subtree: true })
+}, 999)

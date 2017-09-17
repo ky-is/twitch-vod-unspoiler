@@ -1,20 +1,6 @@
 let changingSpeed = 0
 let speedChangeTimeout = null
 
-const waitForSelector = function (selector, callback) {
-  let attempts = 0
-  const waitInterval = window.setInterval(() => {
-    attempts += 1
-    const element = document.querySelector(selector)
-    if (element) {
-      callback(element)
-    }
-    if (element || attempts > 9) {
-      window.clearInterval(waitInterval)
-    }
-  }, 0)
-}
-
 const resetSpeedChange = function () {
   if (speedChangeTimeout) {
     return
@@ -91,7 +77,7 @@ window.addEventListener('keypress', event => {
           settingsIcon.click()
         }
         resetSpeedChange()
-      })
-    })
+      }, 9)
+    }, 9)
   }
 }, { passive: true })
