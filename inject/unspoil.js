@@ -44,6 +44,15 @@ const seek = function (event) {
 }
 
 const pageObserver = new window.MutationObserver((mutations, observing) => {
+  const channelNameElement = document.querySelector('.cn-bar__displayname')
+  if (!channelNameElement) {
+    return
+  }
+  const newChannel = channelNameElement.textContent
+  if (newChannel !== syncChannel) {
+    setSyncChannel(newChannel)
+  }
+
   const seekContainer = document.querySelector('#js-player-seek')
   if (seekContainer && seekContainer.children.length && !document.querySelector('#_unspoil-seek')) {
     const unspoilDiv = document.createElement('div')
