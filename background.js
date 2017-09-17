@@ -1,13 +1,32 @@
-let off = false
+let disabled = localStorage.getItem('disabled')
 
-const updateIcon = () => {
-  chrome.browserAction.setIcon({ path: `images/icon-${off ? 'off' : 'on'}.png` })
+const updateIcon = function () {
+  chrome.browserAction.setIcon({ path: `images/icon-${disabled ? 'off' : 'on'}.png` })
 }
 
+const getSyncMessage = function () {
+  return { disabled }
+}
+
+//LISTENERS
+
 chrome.browserAction.onClicked.addListener((tab) => {
-  off = !off
-  chrome.tabs.executeScript(null, { code: `document.body.classList.toggle('_unspoil-off')` })
+  disabled = !disabled
+  localStorage.setItem('disabled', disabled)
   updateIcon()
+
+  chrome.tabs.query({ discarded: false }, (tabs) => {
+    const message = getSyncMessage()
+    for (const tab of tabs) {
+      chrome.tabs.sendMessage(tab.id, message)
+    }
+  })
 })
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  sendResponse(getSyncMessage())
+})
+
+//SETUP
 
 updateIcon()
