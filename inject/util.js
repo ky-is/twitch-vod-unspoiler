@@ -5,12 +5,10 @@ const waitForSelector = function (selector, callback, maxAttemptFrames) {
     const element = document.querySelector(selector)
     if (element) {
       callback(element)
-      if (attempts > 1) {
-      }
     }
     if (element || attempts > maxAttemptFrames) {
       if (attempts > 999) {
-        console.error(selector, attempts)
+        console.log(selector, attempts)
       }
       window.clearInterval(waitInterval)
     }

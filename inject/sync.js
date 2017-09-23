@@ -1,6 +1,9 @@
 let syncChannel = null
 
 const onBackgroundSync = function (background) {
+  if (!background) {
+    return
+  }
   if (background.sync) {
     if (syncChannel) {
       sendSyncChannel()
