@@ -34,27 +34,32 @@ const onSeek = function (event) {
   // } else {
   //   resultHandlePixels = (resultHandleSeconds / seekSecondsMax) * maxSliderPixels
   // }
+  // const clickX = sliderRect.left + resultHandlePixels
+  // const clickY = sliderRect.top + 1
   // const seekMouseEvent = new MouseEvent('click', {
-  //   bubbles: true,
-  //   cancelable: true,
-  //   clientX: sliderRect.left + resultHandlePixels,
-  //   clientY: sliderRect.top,
+  //   // bubbles: true,
+  //   // cancelable: true,
+  //   clientX: clickX,
+  //   clientY: clickY,
+  //   // screenX: clickX,
+  //   // screenY: clickY + 100,
+  //   // composed: true,
   // })
   // slider.dispatchEvent(seekMouseEvent)
   // slider.setAttribute('aria-valuenow', resultHandleSeconds)
   // console.log(event, seekMouseEvent)
 
-   const playerElement = document.querySelector('#player')
-   const keyEvent = new KeyboardEvent('keydown', {
-     bubbles: false,
-     cancelable: false,
-     key: seekVector < 0 ? 'ArrowLeft' : 'ArrowRight',
-     repeat: true,
-   })
-   const arrowSeeks = Math.ceil(seekDuration / 5)
-   for (let idx = 0; idx < arrowSeeks; idx += 1) {
-     playerElement.dispatchEvent(keyEvent)
-   }
+  const playerElement = document.querySelector('#player')
+  const keyEvent = new KeyboardEvent('keydown', {
+    bubbles: false,
+    cancelable: false,
+    key: seekVector < 0 ? 'ArrowLeft' : 'ArrowRight',
+    repeat: true,
+  })
+  const arrowSeeks = Math.ceil(seekDuration / 5)
+  for (let idx = 0; idx < arrowSeeks; idx += 1) {
+    playerElement.dispatchEvent(keyEvent)
+  }
 }
 
 const pageObserver = new window.MutationObserver((mutations, observing) => {

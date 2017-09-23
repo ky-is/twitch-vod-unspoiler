@@ -15,7 +15,7 @@
     {
       "matches": ["*://*.twitch.tv/*", "*://twitch.tv/*"],
       "css": ["inject/unspoil.css"],
-      "js": ["inject/util.js", "inject/unspoil.js", "inject/hotkeys.js", "inject/sync.js"]
+      "js": ["inject/util.js", "inject/hotkeys.js", "inject/sync.js", "inject/seek.js"]
     }
   ],
   "icons": {
