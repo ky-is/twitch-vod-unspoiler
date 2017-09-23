@@ -35,6 +35,9 @@ body:not(._unspoil-off) .player-slider__popup-container .popup-timestamp {
 body:not(._unspoil-off) #js-player-seek > div:first-child {
   visibility: hidden !important;
 }
+body:not(._unspoil-off) .video-chat__input {
+  display: none !important;
+}
 
 body._unspoil-off #js-player-seek > div:last-child {
   display: none !important;
