@@ -14,8 +14,15 @@
   "content_scripts": [
     {
       "matches": ["*://*.twitch.tv/*", "*://twitch.tv/*"],
+      "exclude_matches": ["*://player.twitch.tv/*"],
       "css": ["inject/unspoil.css"],
-      "js": ["inject/util.js", "inject/hotkeys.js", "inject/sync.js", "inject/seek.js"]
+      "js": ["inject/util.js", "inject/sync.js", "inject/seek.js"]
+    },
+    {
+      "matches": ["*://player.twitch.tv/*"],
+      "css": ["inject/player.css"],
+      "js": ["inject/util.js", "inject/sync.js", "inject/hotkeys.js", "inject/player.js"],
+      "all_frames": true
     }
   ],
   "icons": {

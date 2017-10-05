@@ -1,5 +1,3 @@
-/* VODs page */
-
 body:not(._unspoil-off) .card__meta.card__meta--right {
   display: none !important;
 }
@@ -8,37 +6,6 @@ body:not(._unspoil-off) .player-slider__popup-container .popup-timestamp {
   display: none !important;
 }
 
-/* Player controls */
-
-._unspoil-separator {
-  padding: 0 8px !important;
-}
-
-._unspoil-faint {
-  opacity: 0.9;
-  color: #eee;
-}
-
-#_unspoil-seek button {
-  margin: 0 2px !important;
-  outline: none !important;
-}
-#_unspoil-seek button:hover, #_unspoil-seek button:hover ._unspoil-faint {
-  color: rgb(169, 145, 212) !important;
-}
-#_unspoil-seek button:hover:active {
-  opacity: 0.75;
-}
-
-/* Controls visibility */
-
-body:not(._unspoil-off) #js-player-seek > div:first-child {
-  visibility: hidden !important;
-}
 body:not(._unspoil-off) .video-chat__input {
-  display: none !important;
-}
-
-body._unspoil-off #js-player-seek > div:last-child {
   display: none !important;
 }

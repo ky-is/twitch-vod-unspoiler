@@ -8,7 +8,7 @@ const waitForSelector = function (selector, callback, maxAttemptFrames) {
     }
     if (element || attempts > maxAttemptFrames) {
       if (attempts > 999) {
-        console.log(selector, attempts)
+        console.error('Failed to load', selector, attempts)
       }
       window.clearInterval(waitInterval)
     }
