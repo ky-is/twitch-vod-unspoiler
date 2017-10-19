@@ -15,8 +15,8 @@
     {
       "matches": ["*://*.twitch.tv/*", "*://twitch.tv/*"],
       "exclude_matches": ["*://player.twitch.tv/*"],
-      "css": ["inject/page/page.css"],
-      "js": ["inject/util.js", "inject/sync.js", "inject/page/index.js"]
+      "css": ["inject/page/page.css", "inject/player/player.css"],
+      "js": ["inject/util.js", "inject/sync.js", "inject/player/hotkeys.js", "inject/page/index.js", "inject/player/index.js"]
     },
     {
       "matches": ["*://player.twitch.tv/*"],
