@@ -9,6 +9,9 @@ const pageObserver = new window.MutationObserver((mutations, observing) => {
   if (newChannel !== syncChannel) {
     setSyncChannel(newChannel)
   }
+  if (isBeta && injectPlayer) {
+    injectPlayer()
+  }
 })
 
 waitForSelector(isBeta ? 'main' : '#main_col', (nextElement) => {

@@ -1,7 +1,7 @@
 const SEEK_SECONDS = [
   // SECONDS * MINUTES * HOURS
   30,
-  60 * 5,
+  60 * 10,
   60 * 30,
 ]
 
@@ -34,11 +34,12 @@ const onSeek = function (event) {
   // } else {
   //   resultHandlePixels = (resultHandleSeconds / seekSecondsMax) * maxSliderPixels
   // }
-  // const clickX = sliderRect.left + resultHandlePixels
-  // const clickY = sliderRect.top + 1
+  // const clickX = Math.round(sliderRect.left + resultHandlePixels)
+  // const clickY = Math.round(sliderRect.top)
+  // console.log(clickX, clickY)
   // const seekMouseEvent = new MouseEvent('click', {
-  //   // bubbles: true,
-  //   // cancelable: true,
+  //   bubbles: true,
+  //   cancelable: true,
   //   clientX: clickX,
   //   clientY: clickY,
   //   // screenX: clickX,
@@ -62,29 +63,42 @@ const onSeek = function (event) {
   }
 }
 
-waitForSelector('.player-streaminfo__name', (nextElement) => {
-  setSyncChannel(document.querySelector('.player-streaminfo__name a').textContent)
+const UNSPOIL_CONTROLS_ID = '_unspoil-seek'
 
-  const seekContainer = document.querySelector('.player-seek')
-  const unspoilDiv = document.createElement('div')
-  unspoilDiv.id = '_unspoil-seek'
-  seekContainer.appendChild(unspoilDiv)
-  unspoilDiv.innerHTML = `
-    <span>
-      <button u-seek="-3">◀︎<span class="_unspoil-faint">30m</span></button>
-      <button u-seek="-2">◀︎<span class="_unspoil-faint">5m</span></button>
-      <button u-seek="-1">◀︎<span class="_unspoil-faint">30s</span></button>
-    </span>
-    <span class="_unspoil-faint _unspoil-separator"></span>
-    <span>
-      <button u-seek="1"><span class="_unspoil-faint">30s</span> ▶︎</button>
-      <button u-seek="2"><span class="_unspoil-faint">5m</span> ▶︎</button>
-      <button u-seek="3"><span class="_unspoil-faint">30m</span> ▶︎</button>
-    </span>
-  `
-  for (const spanChild of unspoilDiv.children) {
-    for (const buttonChild of spanChild.children) {
-      buttonChild.addEventListener('click', onSeek, false)
+const injectPlayer = function() {
+  waitForSelector('.player-streaminfo__name', (nextElement) => {
+    if (document.getElementById(UNSPOIL_CONTROLS_ID)) {
+      return
     }
-  }
-}, 999)
+    setSyncChannel(document.querySelector('.player-streaminfo__name a').textContent)
+
+    const seekContainer = document.querySelector('.player-seek')
+    if (!seekContainer) {
+      return
+    }
+    const unspoilDiv = document.createElement('div')
+    unspoilDiv.id = UNSPOIL_CONTROLS_ID
+    let times = SEEK_SECONDS.map(seconds => seconds < 90 ? `${seconds}s` : `${seconds / 60}m`)
+    unspoilDiv.innerHTML = `
+      <span>
+        <button u-seek="-3">◀︎<span class="_unspoil-faint">${times[2]}</span></button>
+        <button u-seek="-2">◀︎<span class="_unspoil-faint">${times[1]}</span></button>
+        <button u-seek="-1">◀︎<span class="_unspoil-faint">${times[0]}</span></button>
+      </span>
+      <span class="_unspoil-faint _unspoil-separator"></span>
+      <span>
+        <button u-seek="1"><span class="_unspoil-faint">${times[0]}</span> ▶︎</button>
+        <button u-seek="2"><span class="_unspoil-faint">${times[1]}</span> ▶︎</button>
+        <button u-seek="3"><span class="_unspoil-faint">${times[2]}</span> ▶︎</button>
+      </span>
+    `
+    seekContainer.appendChild(unspoilDiv)
+    for (const spanChild of unspoilDiv.children) {
+      for (const buttonChild of spanChild.children) {
+        buttonChild.addEventListener('click', onSeek, false)
+      }
+    }
+  }, 99)
+}
+
+injectPlayer()
