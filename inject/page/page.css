@@ -1,4 +1,4 @@
-body:not(._unspoil-off) .card__meta.card__meta--right {
+body:not(._unspoil-off) .video-preview-card__meta:last-of-type, body:not(._unspoil-off) .card__meta.card__meta--right { /*TODO remove old*/
   display: none !important;
 }
 
