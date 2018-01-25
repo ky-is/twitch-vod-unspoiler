@@ -1,4 +1,5 @@
 let syncChannel = null
+let channelDisabled = false
 
 const onBackgroundSync = function (background) {
   if (!background) {
@@ -12,19 +13,29 @@ const onBackgroundSync = function (background) {
     if (background.channel !== syncChannel) {
       return
     }
-    if (background.disabled !== undefined) {
-      document.body.classList.toggle('_unspoil-off', background.disabled)
+    const disable = background.disabled
+    if (disable !== undefined) {
+      if (disable !== channelDisabled) {
+        document.body.classList.toggle('_unspoil-off', disable)
+        channelDisabled = disable
+      }
     }
   }
 }
 
+const sendMessage = function (body) {
+  chrome.runtime.sendMessage(body, onBackgroundSync)
+}
+
+chrome.runtime.onMessage.addListener(onBackgroundSync)
+
+//CHANNEL
+
 const sendSyncChannel = function () {
-  chrome.runtime.sendMessage({ channel: syncChannel }, onBackgroundSync)
+  sendMessage({ channel: syncChannel })
 }
 
 const setSyncChannel = function (channel) {
   syncChannel = channel ? channel.toUpperCase() : null
   sendSyncChannel()
 }
-
-chrome.runtime.onMessage.addListener(onBackgroundSync)

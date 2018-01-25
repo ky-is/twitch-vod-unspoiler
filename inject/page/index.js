@@ -1,7 +1,7 @@
-const isBeta = document.body.className !== 'ember-application'
+let mainElement
 
 const pageObserver = new window.MutationObserver((mutations, observing) => {
-  const channelNameElement = document.querySelector(isBeta ? '.channel-header__user h5' : '.cn-bar__displayname')
+  const channelNameElement = mainElement.querySelector('.channel-header__user h5')
   if (!channelNameElement) {
     return
   }
@@ -9,11 +9,12 @@ const pageObserver = new window.MutationObserver((mutations, observing) => {
   if (newChannel !== syncChannel) {
     setSyncChannel(newChannel)
   }
-  if (isBeta && injectPlayer) {
+  if (injectPlayer) {
     injectPlayer()
   }
 })
 
-waitForSelector(isBeta ? 'main' : '#main_col', (nextElement) => {
+waitForSelector('main', (nextElement) => {
+  mainElement = nextElement
   pageObserver.observe(nextElement, { childList: true, subtree: true })
 }, 999)
