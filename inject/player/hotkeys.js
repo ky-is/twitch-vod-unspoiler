@@ -12,6 +12,9 @@ const resetSpeedChange = function () {
 }
 
 window.addEventListener('keypress', event => {
+  if (document.getElementById('bttvSettingsPanel')) {
+    return
+  }
   const keyCode = event.keyCode
   let speedChange = 0
   if (event.shiftKey) {
