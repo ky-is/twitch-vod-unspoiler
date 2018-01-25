@@ -1,7 +1,8 @@
 const SEEK_SECONDS = [
   // SECONDS * MINUTES * HOURS
   30,
-  60 * 10,
+  60 * 5,
+  60 * 15,
   60 * 30,
 ]
 
@@ -66,39 +67,41 @@ const onSeek = function (event) {
 const UNSPOIL_CONTROLS_ID = '_unspoil-seek'
 
 const injectPlayer = function() {
-  waitForSelector('.player-streaminfo__name', (nextElement) => {
-    if (document.getElementById(UNSPOIL_CONTROLS_ID)) {
-      return
-    }
-    setSyncChannel(document.querySelector('.player-streaminfo__name a').textContent)
+  if (document.getElementById(UNSPOIL_CONTROLS_ID)) {
+    return
+  }
 
-    const seekContainer = document.querySelector('.player-seek')
-    if (!seekContainer) {
-      return
+  const seekContainer = document.querySelector('.player-seek')
+  if (!seekContainer) {
+    return
+  }
+  const unspoilDiv = document.createElement('div')
+  unspoilDiv.id = UNSPOIL_CONTROLS_ID
+  let times = SEEK_SECONDS.map(seconds => seconds < 90 ? `${seconds}s` : `${seconds / 60}m`)
+  unspoilDiv.innerHTML = `
+    <span>
+      <button u-seek="-4">◀︎<span class="_unspoil-faint">${times[3]}</span></button>
+      <button u-seek="-3">◀︎<span class="_unspoil-faint">${times[2]}</span></button>
+      <button u-seek="-2">◀︎<span class="_unspoil-faint">${times[1]}</span></button>
+      <button u-seek="-1">◀︎<span class="_unspoil-faint">${times[0]}</span></button>
+    </span>
+    <span class="_unspoil-faint _unspoil-separator"></span>
+    <span>
+      <button u-seek="1"><span class="_unspoil-faint">${times[0]}</span> ▶︎</button>
+      <button u-seek="2"><span class="_unspoil-faint">${times[1]}</span> ▶︎</button>
+      <button u-seek="3"><span class="_unspoil-faint">${times[2]}</span> ▶︎</button>
+      <button u-seek="4"><span class="_unspoil-faint">${times[3]}</span> ▶︎</button>
+    </span>
+  `
+  seekContainer.appendChild(unspoilDiv)
+  for (const spanChild of unspoilDiv.children) {
+    for (const buttonChild of spanChild.children) {
+      buttonChild.addEventListener('click', onSeek, false)
     }
-    const unspoilDiv = document.createElement('div')
-    unspoilDiv.id = UNSPOIL_CONTROLS_ID
-    let times = SEEK_SECONDS.map(seconds => seconds < 90 ? `${seconds}s` : `${seconds / 60}m`)
-    unspoilDiv.innerHTML = `
-      <span>
-        <button u-seek="-3">◀︎<span class="_unspoil-faint">${times[2]}</span></button>
-        <button u-seek="-2">◀︎<span class="_unspoil-faint">${times[1]}</span></button>
-        <button u-seek="-1">◀︎<span class="_unspoil-faint">${times[0]}</span></button>
-      </span>
-      <span class="_unspoil-faint _unspoil-separator"></span>
-      <span>
-        <button u-seek="1"><span class="_unspoil-faint">${times[0]}</span> ▶︎</button>
-        <button u-seek="2"><span class="_unspoil-faint">${times[1]}</span> ▶︎</button>
-        <button u-seek="3"><span class="_unspoil-faint">${times[2]}</span> ▶︎</button>
-      </span>
-    `
-    seekContainer.appendChild(unspoilDiv)
-    for (const spanChild of unspoilDiv.children) {
-      for (const buttonChild of spanChild.children) {
-        buttonChild.addEventListener('click', onSeek, false)
-      }
-    }
-  }, 99)
+  }
 }
 
-injectPlayer()
+waitForSelector('.player-streaminfo__name', (nextElement) => {
+  setSyncChannel(nextElement.querySelector('a').textContent)
+  injectPlayer()
+}, 99)
