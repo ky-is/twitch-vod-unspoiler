@@ -9,3 +9,12 @@ body:not(._unspoil-off) .player-slider__popup-container .popup-timestamp {
 body:not(._unspoil-off) .video-chat__input {
   display: none !important;
 }
+
+/* WHISPER BAR*/
+
+body:not(._unspoil-off) .whispers--theatre-mode {
+  display: none !important;
+}
+body:not(._unspoil-off) .video-player--theatre .video-player__container {
+  bottom: 0 !important;
+}
