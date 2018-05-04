@@ -3,7 +3,7 @@
 
   "name": "Twitch VOD Unspoiler",
   "description": "Enhances your twitch.tv VOD viewing experience",
-  "version": "1.4",
+  "version": "1.5",
 
   "background": {
     "scripts": ["background.js"]
