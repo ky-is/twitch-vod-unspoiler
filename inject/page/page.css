@@ -1,17 +1,13 @@
-body:not(._unspoil-off) .video-preview-card__meta:last-of-type, body:not(._unspoil-off) .card__meta.card__meta--right { /*TODO remove old*/
+/* VODS */
+
+/* Hide vod length label */
+body:not(._unspoil-off) .video-preview-card__preview-overlay-stat:last-of-type {
   display: none !important;
 }
 
-body:not(._unspoil-off) .player-slider__popup-container .popup-timestamp {
-  display: none !important;
-}
+/* PLAYER */
 
-body:not(._unspoil-off) .video-chat__input {
-  display: none !important;
-}
-
-/* WHISPER BAR*/
-
+/* Hide whisper bar */
 body:not(._unspoil-off) .whispers--theatre-mode {
   display: none !important;
 }
