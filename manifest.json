@@ -14,7 +14,7 @@
   "content_scripts": [
     {
       "matches": ["*://*.twitch.tv/*", "*://twitch.tv/*"],
-      "exclude_matches": ["*://player.twitch.tv/*"],
+      "exclude_matches": ["*://player.twitch.tv/*", "*://clips.twitch.tv/*"],
       "css": ["inject/page/page.css", "inject/player/player.css"],
       "js": ["inject/util.js", "inject/sync.js", "inject/player/hotkeys.js", "inject/page/index.js", "inject/player/index.js"]
     },
