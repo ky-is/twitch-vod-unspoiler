@@ -1,47 +1,47 @@
 /* Unspoil Custom UI */
 
 #_unspoil-seek ._unspoil-separator {
-  padding: 0 8px !important;
+	padding: 0 8px !important;
 }
 
 #_unspoil-seek ._unspoil-faint {
-  opacity: 0.9;
-  color: #eee !important;
+	opacity: 0.9;
+	color: #eee !important;
 }
 
 #_unspoil-seek button {
-  margin: 0 2px !important;
-  outline: none !important;
-  background: none !important;
+	margin: 0 2px !important;
+	outline: none !important;
+	background: none !important;
 }
 #_unspoil-seek button:hover, #_unspoil-seek button:hover ._unspoil-faint {
-  color: rgb(169, 145, 212) !important;
+	color: rgb(169, 145, 212) !important;
 }
 #_unspoil-seek button:hover:active {
-  opacity: 0.75;
+	opacity: 0.75;
 }
 
 /* Unspoil Twitch UI */
 
 /* Hide scrubber */
 body._unspoil-off .player-seek > *:not(#_unspoil-seek) {
-  visibility: show !important;
+	visibility: show !important;
 }
 body:not(._unspoil-off) .player-seek > *:not(#_unspoil-seek) {
-  visibility: hidden !important;
+	visibility: hidden !important;
 }
 
 body._unspoil-off #_unspoil-seek {
-  display: none !important;
+	display: none !important;
 }
 body:not(._unspoil-off) #_unspoil-seek {
-  display: block !important;
+	display: block !important;
 }
 
 /* Hide Clips */
 body._unspoil-off .player-menu {
-  display: block !important;
+	display: block !important;
 }
 body:not(._unspoil-off) .player-menu {
-  display: none !important;
+	display: none !important;
 }

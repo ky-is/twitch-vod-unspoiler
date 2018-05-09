@@ -2,15 +2,15 @@
 
 /* Hide vod length label */
 body:not(._unspoil-off) .video-preview-card__preview-overlay-stat:last-of-type {
-  display: none !important;
+	display: none !important;
 }
 
 /* PLAYER */
 
 /* Hide whisper bar */
 body:not(._unspoil-off) .whispers--theatre-mode {
-  display: none !important;
+	display: none !important;
 }
 body:not(._unspoil-off) .video-player--theatre .video-player__container {
-  bottom: 0 !important;
+	bottom: 0 !important;
 }
