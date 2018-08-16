@@ -1,7 +1,7 @@
 /* VODS */
 
 /* Hide vod length label */
-body:not(._unspoil-off) .video-preview-card__preview-overlay-stat:last-of-type {
+body:not(._unspoil-off) .preview-card-overlay > div:first-child {
 	display: none !important;
 }
 
