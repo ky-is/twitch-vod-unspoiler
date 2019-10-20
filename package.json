@@ -2,6 +2,7 @@
 	"name": "twitch-vod-unspoiler",
 	"version": "1.6.0",
 	"author": "Kyle Coburn",
+	"description": "Chrome extension that removes absolute-time indicators in the Twitch VOD UI to prevent spoilers.",
 	"license": "ISC",
 	"scripts": {
 		"dev": "webpack -w --config build/webpack.dev.js",
