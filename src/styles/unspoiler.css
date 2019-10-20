@@ -1,4 +1,8 @@
-/* Unspoil Custom UI */
+/* Seek control */
+
+#_unspoil-seek {
+	padding: 0 1rem !important;
+}
 
 #_unspoil-seek ._unspoil-separator {
 	padding: 0 8px !important;
@@ -13,6 +17,7 @@
 	margin: 0 2px !important;
 	outline: none !important;
 	background: none !important;
+	font-size: 12px !important;
 }
 #_unspoil-seek button:hover, #_unspoil-seek button:hover ._unspoil-faint {
 	color: rgb(169, 145, 212) !important;
@@ -21,27 +26,11 @@
 	opacity: 0.75;
 }
 
-/* Unspoil Twitch UI */
-
-/* Hide scrubber */
-body._unspoil-off .player-seek > *:not(#_unspoil-seek) {
-	visibility: show !important;
-}
-body:not(._unspoil-off) .player-seek > *:not(#_unspoil-seek) {
-	visibility: hidden !important;
-}
+/* Toggle */
 
 body._unspoil-off #_unspoil-seek {
 	display: none !important;
 }
 body:not(._unspoil-off) #_unspoil-seek {
 	display: block !important;
-}
-
-/* Hide Clips */
-body._unspoil-off .player-menu {
-	display: block !important;
-}
-body:not(._unspoil-off) .player-menu {
-	display: none !important;
 }

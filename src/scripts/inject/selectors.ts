@@ -1,4 +1,4 @@
-const waitForSelector = function (selector, callback, maxAttemptFrames) {
+export function waitForSelector (selector: string, callback: (element: Element) => void, maxAttemptFrames: number) {
 	let attempts = 0
 	const waitInterval = window.setInterval(() => {
 		attempts += 1

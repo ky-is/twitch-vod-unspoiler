@@ -1,0 +1,25 @@
+{
+	"manifest_version": 2,
+	"name": "Twitch VOD Unspoiler",
+	"description": "Removes spoilers from Twitch.tv VODs",
+	"version": "1.6.0",
+	"background": {
+		"scripts": ["generated/background/index.js"]
+	},
+	"browser_action": {
+		"default_icon": "images/icon-off.png"
+	},
+	"content_scripts": [
+		{
+			"matches": ["*://www.twitch.tv/*", "*://twitch.tv/*"],
+			"css": ["generated/inject/index.css"],
+			"js": [ "generated/inject/index.js"]
+		}
+	],
+	"icons": {
+		"128": "images/icon-on.png"
+	},
+	"permissions": [
+		"activeTab"
+	]
+}

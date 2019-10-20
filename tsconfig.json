@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"incremental": true,
+		"target": "es6",
+		"module": "commonjs",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"types": ["@types/chrome"],
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"],
+		},
+		"outDir": "./dist/scripts",
+	},
+	"include": [
+		"src/scripts/background/index.ts",
+		"src/scripts/inject/index.ts",
+	],
+}
