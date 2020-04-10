@@ -1,22 +1,12 @@
 /* Hide vod length label */
 
-body:not(._unspoil-off) .preview-card-overlay > [data-test-selector="top-left-selector"] {
+body:not(._unspoil-off) .tw-media-card-image__corners .tw-left-0.tw-top-0 {
 	visibility: hidden !important;
-}
-
-/* Full-height video */
-
-body:not(._unspoil-off) .whispers-threads-box__container {
-	display: none !important;
-}
-
-body:not(._unspoil-off) .highwind-video-player__container--theatre-whispers {
-	bottom: 0 !important;
 }
 
 /* Full-height chat */
 
-body:not(._unspoil-off) .video-chat__header, body:not(._unspoil-off) .video-chat__input {
+body:not(._unspoil-off) .chat-room__notifications, body:not(._unspoil-off) .chat-input, body:not(._unspoil-off) .channel-leaderboard {
 	display: none !important;
 }
 
