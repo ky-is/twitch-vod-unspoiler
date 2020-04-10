@@ -5,7 +5,7 @@
 		"target": "es6",
 		"module": "commonjs",
 		"lib": ["dom", "dom.iterable", "esnext"],
-		"types": ["@types/chrome"],
+		"types": ["chrome"],
 		"baseUrl": ".",
 		"paths": {
 			"@/*": ["src/*"],
