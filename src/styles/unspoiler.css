@@ -26,11 +26,8 @@
 	opacity: 0.75;
 }
 
-/* Toggle */
+/* Toggle on VOD pages only */
 
-body._unspoil-off #_unspoil-seek {
+body._unspoil-off #_unspoil-seek, .video-player__overlay > *:nth-child(7):last-child #_unspoil-seek {
 	display: none !important;
-}
-body:not(._unspoil-off) #_unspoil-seek {
-	display: block !important;
 }
