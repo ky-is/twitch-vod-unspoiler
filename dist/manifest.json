@@ -21,6 +21,5 @@
 		"128": "images/icon-on.png"
 	},
 	"permissions": [
-		"activeTab"
 	]
 }
