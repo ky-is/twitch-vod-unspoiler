@@ -1,15 +1,15 @@
 import storage from './storage'
 
 let currentChannel: string | undefined = undefined
-let activeTabID: number | undefined = undefined
+let activeTabId: number | undefined = undefined
 
 function updateIcon (disabled: boolean) {
 	chrome.browserAction.setIcon({ path: `images/icon-${disabled ? 'off' : 'on'}.png` })
 }
 
-function setPrimaryTabId (tabID: number) {
-	chrome.tabs.sendMessage(tabID, { sync: true })
-	activeTabID = tabID
+function setPrimaryTabId (tabId: number) {
+	chrome.tabs.sendMessage(tabId, { sync: true })
+	activeTabId = tabId
 }
 
 function resetTabState () {
@@ -26,14 +26,14 @@ chrome.browserAction.onClicked.addListener((tab) => {
 	const toggledDisabled = !storage.isDisabled(currentChannel)
 	storage.setDisabled(currentChannel, toggledDisabled)
 	updateIcon(toggledDisabled)
-	const tabID = tab?.id
-	if (tabID) {
-		chrome.tabs.sendMessage(tabID, { channel: currentChannel, disabled: toggledDisabled })
+	const tabId = tab?.id
+	if (tabId) {
+		chrome.tabs.sendMessage(tabId, { channel: currentChannel, disabled: toggledDisabled })
 	}
 })
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-	if (sender.tab?.id !== activeTabID) {
+	if (sender.tab?.id !== activeTabId) {
 		return
 	}
 	if (request.channel) {
@@ -54,9 +54,9 @@ chrome.tabs.onActivated.addListener((tab) => {
 
 function updateCurrentTabInWindow () {
 	chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-		const firstTabID = tabs[0]?.id
-		if (firstTabID) {
-			setPrimaryTabId(firstTabID)
+		const firstTabId = tabs[0]?.id
+		if (firstTabId) {
+			setPrimaryTabId(firstTabId)
 		}
 	})
 }
