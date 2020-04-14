@@ -4,6 +4,7 @@
 	"description": "Removes spoilers from Twitch.tv VODs.",
 	"version": "2.0.0",
 	"background": {
+		"persistent": false,
 		"scripts": ["generated/background/index.js"]
 	},
 	"browser_action": {

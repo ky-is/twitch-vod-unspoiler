@@ -3,8 +3,6 @@ import storage from './storage'
 let currentChannel: string | undefined = undefined
 let activeTabID: number | undefined = undefined
 
-// Primary tab icon
-
 function updateIcon (disabled: boolean) {
 	chrome.browserAction.setIcon({ path: `images/icon-${disabled ? 'off' : 'on'}.png` })
 }
@@ -12,15 +10,6 @@ function updateIcon (disabled: boolean) {
 function setPrimaryTabId (tabID: number) {
 	chrome.tabs.sendMessage(tabID, { sync: true })
 	activeTabID = tabID
-}
-
-function updateCurrentTabInWindow () {
-	chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-		const firstTabID = tabs[0]?.id
-		if (firstTabID) {
-			setPrimaryTabId(firstTabID)
-		}
-	})
 }
 
 function resetTabState () {
@@ -44,7 +33,7 @@ chrome.browserAction.onClicked.addListener((tab) => {
 })
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-	if (sender?.tab?.id !== activeTabID) {
+	if (sender.tab?.id !== activeTabID) {
 		return
 	}
 	if (request.channel) {
@@ -63,9 +52,16 @@ chrome.tabs.onActivated.addListener((tab) => {
 	setPrimaryTabId(tab.tabId)
 })
 
+function updateCurrentTabInWindow () {
+	chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+		const firstTabID = tabs[0]?.id
+		if (firstTabID) {
+			setPrimaryTabId(firstTabID)
+		}
+	})
+}
+
 chrome.windows.onFocusChanged.addListener((windowId) => {
 	resetTabState()
 	updateCurrentTabInWindow()
 })
-
-updateCurrentTabInWindow()
