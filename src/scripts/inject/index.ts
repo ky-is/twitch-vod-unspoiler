@@ -123,17 +123,37 @@ function injectPlayer () {
 }
 
 const pageObserver = new window.MutationObserver((mutations, observing) => {
-	const channelNameElement = mainElement?.querySelector('.channel-header__user p')
-	if (!channelNameElement) {
+	if (!mainElement) {
 		return
 	}
-	const newChannel = channelNameElement.textContent?.trim()
+	const newChannel = guessChannelNameFromContent(mainElement)
 	if (newChannel !== sync.currentChannel) {
 		// console.log(newChannel)
 		sync.setChannel(newChannel ?? undefined)
 	}
 	injectPlayer()
 })
+
+function guessChannelNameFromContent(content: Element): string | null {
+	let channelCandidate: string | undefined
+	for (const link of content.querySelectorAll('a')) {
+		let href = link.getAttribute('href')?.trim()
+		if (!href || !href.startsWith('/')) {
+			continue
+		}
+		href = href.slice(1)
+		if (href.endsWith('/')) {
+			href = href.slice(0, -1)
+		}
+		if (href.split('/').length === 1) { // Only accept root-level links
+			if (channelCandidate === href) { // Must find two instances of candidate link
+				return href
+			}
+			channelCandidate = href
+		}
+	}
+	return null
+}
 
 waitForSelector('main', (nextElement) => {
 	mainElement = nextElement
