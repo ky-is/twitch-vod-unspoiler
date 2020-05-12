@@ -16,6 +16,7 @@ const SECONDS_PER_HOTKEY_SEEK = 10
 let mainElement: Element | undefined = undefined
 
 function onSeek (event: Event) {
+	(document.activeElement as HTMLElement)?.blur()
 	const currentTarget = event.currentTarget
 	if (!currentTarget) {
 		return console.log('No currentTarget for seek')
