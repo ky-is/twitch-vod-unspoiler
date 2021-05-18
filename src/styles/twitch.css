@@ -5,13 +5,11 @@ body:not(._unspoil-off) .tw-media-card-image__corners .tw-left-0.tw-top-0 {
 }
 
 /* Full-height chat */
-
 body:not(._unspoil-off) .chat-room__notifications, body:not(._unspoil-off) .chat-input, body:not(._unspoil-off) .channel-leaderboard {
 	display: none !important;
 }
 
 /* Hide video scrubber */
-
 body:not(._unspoil-off) .player-controls > *:first-child {
 	visibility: hidden !important;
 }

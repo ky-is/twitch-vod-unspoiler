@@ -1,4 +1,4 @@
-import storage from './storage'
+import { isChannelDisabled, setChannelDisabled } from './storage'
 
 let currentChannel: string | undefined = undefined
 let activeTabId: number | undefined = undefined
@@ -23,8 +23,8 @@ chrome.browserAction.onClicked.addListener((tab) => {
 	if (!currentChannel) {
 		return
 	}
-	const toggledDisabled = !storage.isDisabled(currentChannel)
-	storage.setDisabled(currentChannel, toggledDisabled)
+	const toggledDisabled = !isChannelDisabled(currentChannel)
+	setChannelDisabled(currentChannel, toggledDisabled)
 	updateIcon(toggledDisabled)
 	const tabId = tab?.id
 	if (tabId) {
@@ -42,7 +42,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 	if (!currentChannel) {
 		return
 	}
-	const isDisabled = storage.isDisabled(currentChannel)
+	const isDisabled = isChannelDisabled(currentChannel)
 	sendResponse({ channel: currentChannel, disabled: isDisabled })
 	updateIcon(isDisabled)
 })

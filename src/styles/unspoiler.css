@@ -1,5 +1,4 @@
 /* Seek control */
-
 #_unspoil-seek {
 	padding: 0 1rem !important;
 }
@@ -27,7 +26,6 @@
 }
 
 /* Toggle on VOD pages only */
-
 body._unspoil-off #_unspoil-seek, .video-player__overlay > *:nth-child(7):last-child #_unspoil-seek {
 	display: none !important;
 }
