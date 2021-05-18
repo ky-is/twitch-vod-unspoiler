@@ -13,8 +13,11 @@ module.exports = {
 		}),
 	],
 	optimization: {
+		minimize: true,
 		minimizer: [
-			new TerserJSPlugin({}),
+			new TerserJSPlugin({
+				extractComments: false,
+			}),
 			new OptimizeCSSAssetsPlugin({}),
 		],
 	},
@@ -25,6 +28,7 @@ module.exports = {
 	output: {
 		filename: '[name]/index.js',
 		path: path.join(ROOT_PATH, 'dist/generated'),
+		clean: true,
 	},
 	module: {
 		rules: [
@@ -38,12 +42,7 @@ module.exports = {
 			{
 				test: /\.css$/,
 				use: [
-					{
-						loader: MiniCssExtractPlugin.loader,
-						options: {
-							hmr: process.env.NODE_ENV === 'development',
-						},
-					},
+					MiniCssExtractPlugin.loader,
 					'css-loader',
 				],
 			},

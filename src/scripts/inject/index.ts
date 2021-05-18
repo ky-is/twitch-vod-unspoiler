@@ -31,56 +31,17 @@ function onSeek (event: Event) {
 	}
 	const seekIndex = Math.abs(seekVector) - 1
 	const seekDuration = SEEK_SECONDS[seekIndex]
-
-	// const slider = mainElement.querySelector('.js-player-slider')
-	// const sliderRect = slider.getBoundingClientRect()
-	// const maxSliderPixels = sliderRect.width
-	// const seekSecondsNow = parseFloat(slider.getAttribute('aria-valuenow'))
-	// const seekSecondsMax = parseFloat(slider.getAttribute('aria-valuemax'))
-	// const resultHandleSeconds = seekSecondsNow + (Math.sign(seekVector) * seekDuration)
-	// let resultHandlePixels
-	// if (resultHandleSeconds < 0) {
-	// 	if (seekSecondsNow < 1) {
-	// 		return
-	// 	}
-	// 	resultHandlePixels = 0
-	// } else if (resultHandleSeconds > seekSecondsMax) {
-	// 	if (seekSecondsNow > seekSecondsMax - 1) {
-	// 		return
-	// 	}
-	// 	resultHandlePixels = maxSliderPixels
-	// } else {
-	// 	resultHandlePixels = (resultHandleSeconds / seekSecondsMax) * maxSliderPixels
-	// }
-	// const clickX = Math.round(sliderRect.left + resultHandlePixels)
-	// const clickY = Math.round(sliderRect.top)
-	// console.log(clickX, clickY)
-	// const seekMouseEvent = new MouseEvent('click', {
-	// 	bubbles: true,
-	// 	cancelable: true,
-	// 	clientX: clickX,
-	// 	clientY: clickY,
-	// 	// screenX: clickX,
-	// 	// screenY: clickY + 100,
-	// 	// composed: true,
-	// })
-	// slider.dispatchEvent(seekMouseEvent)
-	// slider.setAttribute('aria-valuenow', resultHandleSeconds)
-	// console.log(event, seekMouseEvent)
-
 	const playerElement = mainElement!.querySelector('video')
 	if (!playerElement) {
 		return console.error('Player not found')
 	}
-	const keyCode = seekVector < 0 ? '37' : '39'
+	const keyCode = seekVector < 0 ? 37 : 39
 	const keyEvent = new KeyboardEvent('keydown', {
 		bubbles: true,
 		cancelable: false,
-		// key: seekVector < 0 ? 'ArrowLeft' : 'ArrowRight',
-		// code: `${keyCode}`,
 		keyCode,
 		repeat: true,
-	} as any) //TODO Twitch.tv uses the deprecated `keyCode` parameter 2019/10/19. We need to wait for them to adopt `code` to remove `as any`.
+	})
 	const arrowSeeks = Math.ceil(seekDuration / SECONDS_PER_HOTKEY_SEEK)
 	for (let idx = 0; idx < arrowSeeks; idx += 1) {
 		playerElement.dispatchEvent(keyEvent)
@@ -129,7 +90,6 @@ const pageObserver = new window.MutationObserver((mutations, observing) => {
 	}
 	const newChannel = guessChannelNameFromContent(mainElement)
 	if (newChannel !== sync.currentChannel) {
-		// console.log(newChannel)
 		sync.setChannel(newChannel ?? undefined)
 	}
 	injectPlayer()
