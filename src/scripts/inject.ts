@@ -1,5 +1,4 @@
-import { waitForSelector } from './selectors'
-import sync from './sync'
+import { injectTwitchPageOnBehalfOf } from './twitch-extension-channel-manager/inject'
 
 import '@/styles/twitch.css'
 import '@/styles/unspoiler.css'
@@ -12,8 +11,6 @@ const SEEK_SECONDS = [
 	60 * 30,
 ]
 const SECONDS_PER_HOTKEY_SEEK = 10
-
-let mainElement: Element | undefined = undefined
 
 function onSeek (event: Event) {
 	(document.activeElement as HTMLElement)?.blur()
@@ -31,7 +28,7 @@ function onSeek (event: Event) {
 	}
 	const seekIndex = Math.abs(seekVector) - 1
 	const seekDuration = SEEK_SECONDS[seekIndex]
-	const playerElement = mainElement!.querySelector('video')
+	const playerElement = document.querySelector('video')
 	if (!playerElement) {
 		return console.error('Player not found')
 	}
@@ -54,7 +51,7 @@ function injectPlayer () {
 	if (document.getElementById(UNSPOIL_CONTROLS_ID)) {
 		return
 	}
-	const seekContainer = mainElement!.querySelector('.player-controls')
+	const seekContainer = document.querySelector('.player-controls')
 	if (!seekContainer) {
 		return
 	}
@@ -84,22 +81,4 @@ function injectPlayer () {
 	}
 }
 
-const pageObserver = new window.MutationObserver((mutations, observing) => {
-	if (!mainElement) {
-		return
-	}
-	const newChannel = guessChannelNameFromContent(mainElement)
-	if (newChannel !== sync.currentChannel) {
-		sync.setChannel(newChannel ?? undefined)
-	}
-	injectPlayer()
-})
-
-function guessChannelNameFromContent(content: Element): string | undefined {
-	return content.querySelector('h1')?.innerText
-}
-
-waitForSelector('main', (nextElement) => {
-	mainElement = nextElement
-	pageObserver.observe(nextElement, { childList: true, subtree: true })
-}, 999)
+injectTwitchPageOnBehalfOf('unspoil', injectPlayer)

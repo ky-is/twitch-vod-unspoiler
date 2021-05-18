@@ -11,13 +11,13 @@
 	},
 	"background": {
 		"persistent": false,
-		"scripts": ["generated/background/index.js"]
+		"scripts": ["generated/background.js"]
 	},
 	"content_scripts": [
 		{
 			"matches": ["*://www.twitch.tv/*", "*://twitch.tv/*"],
-			"css": ["generated/inject/index.css"],
-			"js": [ "generated/inject/index.js"]
+			"css": ["generated/inject.css"],
+			"js": [ "generated/inject.js"]
 		}
 	],
 	"permissions": [

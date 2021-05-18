@@ -2,18 +2,18 @@
 	"compilerOptions": {
 		"strict": true,
 		"incremental": true,
-		"target": "es6",
-		"module": "commonjs",
+		"target": "ESNext",
+		"module": "CommonJS",
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"types": ["chrome"],
 		"baseUrl": ".",
 		"paths": {
 			"@/*": ["src/*"],
 		},
-		"outDir": "./dist/scripts",
+		"outDir": "./dist/generated",
 	},
 	"include": [
-		"src/scripts/background/index.ts",
-		"src/scripts/inject/index.ts",
+		"src/scripts/background.ts",
+		"src/scripts/inject.ts",
 	],
 }

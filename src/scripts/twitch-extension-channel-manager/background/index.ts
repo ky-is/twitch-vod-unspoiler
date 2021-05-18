@@ -33,12 +33,10 @@ chrome.browserAction.onClicked.addListener((tab) => {
 })
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-	if (sender.tab?.id !== activeTabId) {
+	if (sender.tab?.id !== activeTabId || request.channel === undefined) {
 		return
 	}
-	if (request.channel) {
-		currentChannel = request.channel
-	}
+	currentChannel = request.channel
 	if (!currentChannel) {
 		return
 	}
@@ -61,7 +59,7 @@ function updateCurrentTabInWindow () {
 	})
 }
 
-chrome.windows.onFocusChanged.addListener((windowId) => {
+chrome.windows.onFocusChanged.addListener(() => {
 	resetTabState()
 	updateCurrentTabInWindow()
 })

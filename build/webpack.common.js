@@ -9,7 +9,7 @@ const ROOT_PATH = path.join(__dirname, '..')
 module.exports = {
 	plugins: [
 		new MiniCssExtractPlugin({
-			filename: '[name]/index.css',
+			filename: '[name].css',
 		}),
 	],
 	optimization: {
@@ -22,16 +22,20 @@ module.exports = {
 		],
 	},
 	entry: {
-		inject: path.join(ROOT_PATH, 'src/scripts/inject/index.ts'),
-		background: path.join(ROOT_PATH, 'src/scripts/background/index.ts'),
+		inject: path.join(ROOT_PATH, 'src/scripts/inject.ts'),
+		background: path.join(ROOT_PATH, 'src/scripts/background.ts'),
 	},
 	output: {
-		filename: '[name]/index.js',
+		filename: '[name].js',
 		path: path.join(ROOT_PATH, 'dist/generated'),
 		clean: true,
 	},
 	module: {
 		rules: [
+			{
+				test: /\.js$/,
+				include: [/twitch-extension-channel-manager/],
+			},
 			{
 				test: /\.ts$/,
 				use: [
