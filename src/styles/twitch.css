@@ -1,7 +1,7 @@
 /* Hide vod length label */
-
-body:not(._unspoil-off) .tw-media-card-image__corners .tw-left-0.tw-top-0 {
-	visibility: hidden !important;
+body:not(._unspoil-off) .tw-media-card-image__corners > *:first-child p {
+	color: transparent !important;
+	text-shadow: 0 0 5px #fff !important;
 }
 
 /* Full-height chat */
