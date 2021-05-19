@@ -1,1 +1,1 @@
-import './twitch-extension-channel-manager/background'
+import '@ky-is/twitch-extension-channel-manager/background'

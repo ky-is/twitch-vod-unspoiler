@@ -1,11 +1,10 @@
 {
 	"compilerOptions": {
 		"strict": true,
-		"incremental": true,
-		"target": "ESNext",
-		"module": "CommonJS",
+		"target": "esnext",
+		"module": "esnext",
+		"moduleResolution": "node",
 		"lib": ["dom", "dom.iterable", "esnext"],
-		"types": ["chrome"],
 		"baseUrl": ".",
 		"paths": {
 			"@/*": ["src/*"],
