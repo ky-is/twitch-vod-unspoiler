@@ -4,22 +4,23 @@
 	"author": "Kyle Coburn",
 	"description": "Chrome extension that removes absolute-time indicators in the Twitch VOD UI to prevent spoilers.",
 	"license": "ISC",
+	"type": "module",
 	"scripts": {
 		"dev": "webpack -w --config build/webpack.dev.js",
 		"build": "webpack --config build/webpack.prod.js"
 	},
 	"devDependencies": {
-		"@ky-is/eslint-config": "^2.3.1",
+		"@ky-is/eslint-config": "^2.3.4",
 		"@ky-is/twitch-extension-channel-manager": "^0.2.0",
-		"@typescript-eslint/eslint-plugin": "^4.24.0",
-		"@typescript-eslint/parser": "^4.24.0",
-		"css-loader": "^5.2.4",
-		"eslint": "^7.26.0",
+		"@typescript-eslint/eslint-plugin": "^4.25.0",
+		"@typescript-eslint/parser": "^4.25.0",
+		"css-loader": "^5.2.6",
+		"eslint": "^7.27.0",
 		"mini-css-extract-plugin": "^1.6.0",
 		"optimize-css-assets-webpack-plugin": "^6.0.0",
 		"terser-webpack-plugin": "^5.1.2",
-		"ts-loader": "^9.2.1",
-		"typescript": "^4.2.4",
+		"ts-loader": "^9.2.2",
+		"typescript": "^4.3.2",
 		"webpack": "^5.37.1",
 		"webpack-cli": "^4.7.0",
 		"webpack-merge": "^5.7.3"
@@ -28,6 +29,12 @@
 		"extends": "@ky-is/eslint-config/typescript",
 		"env": {
 			"webextensions": true
+		},
+		"rules": {
+			"@typescript-eslint/consistent-type-imports": {
+				"prefer": "type-imports",
+				"disallowTypeAnnotations": true
+			}
 		}
 	},
 	"eslintIgnore": [

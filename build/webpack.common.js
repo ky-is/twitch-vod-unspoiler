@@ -1,12 +1,12 @@
-const path = require('path')
+import path from 'path'
 
-const TerserJSPlugin = require('terser-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+import TerserJSPlugin from 'terser-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin'
 
-const ROOT_PATH = path.join(__dirname, '..')
+const ROOT_PATH = path.resolve()
 
-module.exports = {
+export default {
 	plugins: [
 		new MiniCssExtractPlugin({
 			filename: '[name].css',
@@ -33,14 +33,9 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.js$/,
-				include: [/twitch-extension-channel-manager/],
-			},
-			{
 				test: /\.ts$/,
 				use: [
 					'ts-loader',
-					path.resolve(__dirname, 'strip-template-whitespace-loader.js'),
 				],
 			},
 			{

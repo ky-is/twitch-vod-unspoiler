@@ -6,9 +6,6 @@
 		"moduleResolution": "node",
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"baseUrl": ".",
-		"paths": {
-			"@/*": ["src/*"],
-		},
 		"outDir": "./dist/generated",
 	},
 	"include": [

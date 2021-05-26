@@ -1,7 +1,7 @@
 import { injectTwitchPageOnBehalfOf } from '@ky-is/twitch-extension-channel-manager/inject'
 
-import '@/styles/twitch.css'
-import '@/styles/unspoiler.css'
+import '../styles/twitch.css'
+import '../styles/unspoiler.css'
 
 const SEEK_SECONDS = [
 	// SECONDS * MINUTES * HOURS
