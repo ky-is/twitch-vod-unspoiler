@@ -17,7 +17,8 @@
 		{
 			"matches": ["*://www.twitch.tv/*", "*://twitch.tv/*"],
 			"css": ["generated/inject.css"],
-			"js": [ "generated/inject.js"]
+			"js": [ "generated/inject.js"],
+			"run_at": "document_idle"
 		}
 	],
 	"permissions": [

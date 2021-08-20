@@ -1,24 +1,24 @@
 import path from 'path'
 
 import TerserJSPlugin from 'terser-webpack-plugin'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin'
+import MiniCSSExtractPlugin from 'mini-css-extract-plugin'
+import CSSMinimizerPlugin from 'css-minimizer-webpack-plugin'
 
 const ROOT_PATH = path.resolve()
 
 export default {
+	mode: 'none',
 	plugins: [
-		new MiniCssExtractPlugin({
+		new MiniCSSExtractPlugin({
 			filename: '[name].css',
 		}),
 	],
 	optimization: {
-		minimize: true,
 		minimizer: [
 			new TerserJSPlugin({
 				extractComments: false,
 			}),
-			new OptimizeCSSAssetsPlugin({}),
+			new CSSMinimizerPlugin(),
 		],
 	},
 	entry: {
@@ -41,7 +41,7 @@ export default {
 			{
 				test: /\.css$/,
 				use: [
-					MiniCssExtractPlugin.loader,
+					MiniCSSExtractPlugin.loader,
 					'css-loader',
 				],
 			},
