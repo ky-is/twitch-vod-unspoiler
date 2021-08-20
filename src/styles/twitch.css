@@ -3,6 +3,10 @@ body:not(._unspoil-off) .tw-media-card-image__corners > *:first-child p {
 	color: transparent !important;
 	text-shadow: 0 0 5px #fff !important;
 }
+/* Blur vod preview */
+body:not(._unspoil-off) .preview-card-thumbnail__image {
+	filter: blur(3px);
+}
 
 /* Full-height chat */
 body:not(._unspoil-off) .chat-room__notifications, body:not(._unspoil-off) .chat-input, body:not(._unspoil-off) .channel-leaderboard {
