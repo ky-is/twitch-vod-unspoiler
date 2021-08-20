@@ -51,10 +51,19 @@ function injectPlayer () {
 	if (document.getElementById(UNSPOIL_CONTROLS_ID)) {
 		return
 	}
-	const seekContainer = document.querySelector('.player-controls')
-	if (!seekContainer) {
+	const video = document.querySelector('video')
+	if (!video) {
 		return
 	}
+	const seekContainer = document.querySelector('.player-controls')
+	if (!seekContainer) {
+		video.hidden = true
+		video.pause()
+		return
+	}
+	video.hidden = false
+	video.play()
+
 	const unspoilDiv = document.createElement('div')
 	unspoilDiv.id = UNSPOIL_CONTROLS_ID
 	const times = SEEK_SECONDS.map(seconds => (seconds < 90 ? `${seconds}s` : `${seconds / 60}m`))
