@@ -1,2 +1,2 @@
-* linguist-detectable=false
-src/* linguist-detectable=true
+build/** linguist-vendored
+dist/generated/** linguist-generated
