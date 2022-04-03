@@ -1,11 +1,11 @@
 /* Hide vod length label */
-body:not(._unspoil-off) .tw-media-card-image__corners > *:first-child p {
+body:not(._unspoil-off) .ibaFTb > * { /* .ScPositionCorner-sc-1iiybo2-1:first-child */
 	color: transparent !important;
-	text-shadow: 0 0 5px #fff !important;
+	text-shadow: 0 0 6px #fff !important;
 }
 /* Blur vod preview */
 body:not(._unspoil-off) .preview-card-thumbnail__image {
-	filter: blur(3px);
+	filter: blur(4px);
 }
 
 /* Full-height chat */
