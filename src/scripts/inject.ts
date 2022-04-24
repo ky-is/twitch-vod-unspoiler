@@ -64,6 +64,10 @@ function injectPlayer () {
 	video.hidden = false
 	video.play()
 
+	if (document.querySelector('#root[data-a-page-loaded-name="ChannelWatchPage"]')) {
+		return
+	}
+
 	const unspoilDiv = document.createElement('div')
 	unspoilDiv.id = UNSPOIL_CONTROLS_ID
 	const times = SEEK_SECONDS.map(seconds => (seconds < 90 ? `${seconds}s` : `${seconds / 60}m`))
