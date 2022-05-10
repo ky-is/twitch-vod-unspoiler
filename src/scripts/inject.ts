@@ -55,7 +55,7 @@ function injectPlayer () {
 	if (!video) {
 		return
 	}
-	const seekContainer = document.querySelector('.player-controls')
+	const seekContainer = document.querySelector('.video-player__overlay .player-controls') ?? document.querySelector('.player-controls')
 	if (!seekContainer) {
 		video.hidden = true
 		video.pause()
