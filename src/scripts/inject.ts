@@ -72,23 +72,23 @@ function injectPlayer () {
 	unspoilDiv.id = UNSPOIL_CONTROLS_ID
 	const times = SEEK_SECONDS.map(seconds => (seconds < 90 ? `${seconds}s` : `${seconds / 60}m`))
 	unspoilDiv.innerHTML = `
-		<span>
+		<div>
 			<button u-seek="-4">◀︎<span class="_unspoil-faint">${times[3]}</span></button>
 			<button u-seek="-3">◀︎<span class="_unspoil-faint">${times[2]}</span></button>
 			<button u-seek="-2">◀︎<span class="_unspoil-faint">${times[1]}</span></button>
 			<button u-seek="-1">◀︎<span class="_unspoil-faint">${times[0]}</span></button>
-		</span>
-		<span class="_unspoil-faint _unspoil-separator"></span>
-		<span>
+		</div>
+		<div class="_unspoil-faint _unspoil-separator"></div>
+		<div>
 			<button u-seek="1"><span class="_unspoil-faint">${times[0]}</span> ▶︎</button>
 			<button u-seek="2"><span class="_unspoil-faint">${times[1]}</span> ▶︎</button>
 			<button u-seek="3"><span class="_unspoil-faint">${times[2]}</span> ▶︎</button>
 			<button u-seek="4"><span class="_unspoil-faint">${times[3]}</span> ▶︎</button>
-		</span>
+		</div>
 	`
 	seekContainer.insertBefore(unspoilDiv, seekContainer.children[1])
-	for (const spanChild of unspoilDiv.children) {
-		for (const buttonChild of spanChild.children) {
+	for (const wrapperChild of unspoilDiv.children) {
+		for (const buttonChild of wrapperChild.children) {
 			buttonChild.addEventListener('click', onSeek, false)
 		}
 	}

@@ -1,5 +1,6 @@
 /* Seek control */
 #_unspoil-seek {
+	display: flex !important;
 	padding: 0 1rem !important;
 }
 
