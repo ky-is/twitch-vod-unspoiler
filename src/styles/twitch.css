@@ -1,8 +1,8 @@
 /* Hide vod length label */
-/* body:not(._unspoil-off) .ibaFTb > * { */
-body:not(._unspoil-off) .ScPositionCorner-sc-1iiybo2-1:nth-child(2) > * {
+/* body:not(._unspoil-off) .ScPositionCorner-sc-1iiybo2-1:nth-child(2) > * { */
+body:not(._unspoil-off) .hyKylJ > * {
 	color: transparent !important;
-	text-shadow: 0 0 6px #fff !important;
+	text-shadow: 0 0 5px #fff !important;
 }
 /* Blur vod preview */
 body:not(._unspoil-off) .preview-card-thumbnail__image {
@@ -17,4 +17,9 @@ body:not(._unspoil-off) .chat-room__notifications, body:not(._unspoil-off) .chat
 /* Hide video scrubber */
 body:not(._unspoil-off) .player-controls > *:first-child {
 	visibility: hidden !important;
+}
+
+/* Hide home video */
+body:not(._unspoil-off) .home-video__wrapper {
+	display: none !important;
 }

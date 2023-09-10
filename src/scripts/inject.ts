@@ -55,14 +55,18 @@ function injectPlayer () {
 	if (!video) {
 		return
 	}
+
 	const seekContainer = document.querySelector('.video-player__overlay .player-controls') ?? document.querySelector('.player-controls')
-	if (!seekContainer) {
+	const homeVideoWrapper = document.querySelector('.home-video__wrapper')
+	if (!seekContainer || homeVideoWrapper) {
 		video.hidden = true
 		video.pause()
 		return
 	}
-	video.hidden = false
-	video.play()
+	if (video.hidden) {
+		video.hidden = false
+		video.play()
+	}
 
 	if (document.querySelector('#root[data-a-page-loaded-name="ChannelWatchPage"]')) {
 		return
