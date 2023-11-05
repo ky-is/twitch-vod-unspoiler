@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Twitch VOD Unspoiler",
-	"version": "2.5.5",
+	"version": "2.5.6",
 	"description": "Removes spoilers from Twitch.tv VODs.",
 	"browser_action": {
 		"default_icon": "images/icon-off.png"
